@@ -74,9 +74,12 @@ class IntentAndroidExample extends React.Component {
       }
     }).catch(err => console.error('An error occurred', err));
   }*/
+  static propTypes = {
+    url: React.PropTypes.string,
+  };
   handleButton(e){
     console.log("leagacy 1");
-    const url="";
+    
     let branchUniversalObject = branch.createBranchUniversalObject(
       'content/12345', // canonical identifier
       {
@@ -97,12 +100,12 @@ class IntentAndroidExample extends React.Component {
     let controlParams = {
       '$desktop_url': 'http://desktop-url.com'
     }
-    this.getDefaultUserState(branchUniversalObject,linkProperties);
+    this.getDefaultUserState(branchUniversalObject,linkProperties, controlParams);
 };
     getDefaultUserState = async(branchUniversalObject,linkProperties,controlParams)=> {
       console.log("myFunction")
         try {
-          let {url} = await branchUniversalObject.generateShortUrl(linkProperties, controlParams,controlParams);
+          let {url} = await branchUniversalObject.generateShortUrl(linkProperties, controlParams);
           console.log("hie",url);
         }
         catch(error){
@@ -118,8 +121,8 @@ class IntentAndroidExample extends React.Component {
         <Button
         onPress={this.handleButton.bind(this)}
         title="Create Link"
-        color="#00ff12"
-      />{this.handleButton.url}
+        color="#bdbdbd"
+      />
       </View>
     );
   }
